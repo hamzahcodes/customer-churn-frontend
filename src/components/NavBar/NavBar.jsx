@@ -36,7 +36,7 @@ const NavBar = ({}) => {
             <Link to="services" spy={true} smooth={true} offset={50} duration={500}>Services</Link>
             </li>
             <li>
-            <Link to="contact" spy={true} smooth={true} offset={50} duration={500}>Contact Us</Link>
+            <Link to="contacts" spy={true} smooth={true} offset={50} duration={500}>Contact Us</Link>
             </li>
             <li>
             <NavLink to="/auth" spy={true} smooth={true} offset={50} duration={500}>Sign Up</NavLink>
