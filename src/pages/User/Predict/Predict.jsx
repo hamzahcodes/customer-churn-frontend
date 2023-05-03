@@ -5,8 +5,9 @@ import axios from 'axios';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import Chart from 'chart.js/auto';
 import { Pie, Bar } from 'react-chartjs-2';
+import { BsDownload } from 'react-icons/bs';
+import { CSVLink, CSVDownload } from "react-csv";
 import './predict.css';
-
 
 let file = ""
 let modelName = ""
@@ -148,12 +149,16 @@ const Predict = () => {
       console.log(y + " " + n);
       setLoading(false);
     }
-
+    const handleCSVDownload = () => {
+      console.log("In download");
+      
+    }
     useEffect(() => {
         getUserDetails();
         if(file) {
         }
       }, []);
+
   return (
     <SideBar>
       <div className="main-predict">
@@ -198,7 +203,7 @@ const Predict = () => {
         }
 
         {predict &&
-          <div>
+          <div style={{'marginTop': "10vh"}}>
           <div className="stats stats-vertical lg:stats-horizontal shadow">
             
             <div className="stat">
@@ -207,8 +212,13 @@ const Predict = () => {
             </div>
             
             <div className="stat">
-              <div className="stat-title">Customer Attrition Rate</div>
-              <div className="stat-value">4,200</div>
+              <div className="stat-title">Customers likely to Leave</div>
+              <div className="stat-value">{`${churn.yes}`}</div>
+            </div>
+
+            <div className="stat">
+              <div className="stat-title">Customers who will stay</div>
+              <div className="stat-value">{`${churn.no}`}</div>
             </div>
             
           </div>
@@ -243,8 +253,13 @@ const Predict = () => {
           }} />
           }
           </div>
+
           <div className='pred'>
+
         <TitleCard title={'Predictions on New Data'} width={"w-full"}>
+        <CSVLink data={results.dataframe} headers={results.columns} filename={`${testFile}`} target="_blank">
+          <BsDownload className='download' onClick={() => handleCSVDownload()}/>
+        </CSVLink>
         <div className="overflow-x-auto">
           <table className="table w-full">
             {/* head*/}
