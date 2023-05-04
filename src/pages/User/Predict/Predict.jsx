@@ -212,6 +212,11 @@ const Predict = () => {
             </div>
             
             <div className="stat">
+              <div className="stat-title">Total Customers</div>
+              <div className="stat-value">{`${churn.yes + churn.no}`}</div>
+            </div>
+
+            <div className="stat">
               <div className="stat-title">Customers likely to Leave</div>
               <div className="stat-value">{`${churn.yes}`}</div>
             </div>
